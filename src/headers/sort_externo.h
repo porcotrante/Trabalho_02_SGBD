@@ -4,5 +4,5 @@
 #include <string>
 
 void external_sort(std::string tabela_nome, std::string caminho_csv, int col_idx);
-
+void gerar_paginas_ordenadas(std::string tabela_nome, int colunas);
 #endif
