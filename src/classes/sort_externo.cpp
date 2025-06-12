@@ -5,19 +5,8 @@
 #include <algorithm>
 #include <filesystem>
 #include "../headers/pagina.h"
-
-// Estrutura auxiliar
-struct Tupla {
-    std::vector<std::string> cols;
-    std::string to_string() const {
-        std::ostringstream oss;
-        for (size_t i = 0; i < cols.size(); ++i) {
-            if (i > 0) oss << ",";
-            oss << cols[i];
-        }
-        return oss.str();
-    }
-};
+#include "../headers/tupla.h"
+#include <iostream>
 
 std::vector<Tupla> carregarTuplas(std::string caminho_csv) {
     std::ifstream in(caminho_csv);
