@@ -50,7 +50,7 @@ std::string pagina::getLine(int number) {
     }
 
     std::string linha;
-    int linhaAtual = -1; // começa em -1 para ignorar o cabeçalho (linha 0)
+    int linhaAtual = -1; // comeca em -1 para ignorar o cabecalho (linha 0)
 
     while (std::getline(file, linha)) {
         linhaAtual++;
@@ -59,8 +59,8 @@ std::string pagina::getLine(int number) {
         }
     }
 
-    // Linha não encontrada
-    std::cerr << "Linha " << number << " não encontrada no arquivo." << std::endl;
+    // Linha nao encontrada
+    std::cerr << "Linha " << number << " nao encontrada no arquivo." << std::endl;
     return "";
 }
 

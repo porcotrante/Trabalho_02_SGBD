@@ -48,7 +48,7 @@ tabela::tabela(std::string name, std::string filePath){
             first = false;
         }
 
-        // Passa a string formatada para a função
+        // Passa a string formatada para a funcao
         p.writeLine(result);
         count++;
     }
