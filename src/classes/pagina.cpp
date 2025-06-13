@@ -14,7 +14,7 @@ void pagina::makePage(int colNum, std::string tableName, std::string pageNumber)
         file.close();
     } else {
         // Pode adicionar um tratamento de erro, se desejar
-        std::cerr << "Erro ao criar o arquivo: " << fileName << std::endl;
+        std::cerr << "Erro ao criar o arquivo(offstream file): " << fileName << std::endl;
     }
 }
 
@@ -23,7 +23,7 @@ void pagina::loadPage(std::string filePath){
     std::ifstream file("./pages/" + filePath);
     
     if (!file.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo: " << filePath << std::endl;
+        std::cerr << "Erro ao abrir o arquivo(loadpage): " << filePath << std::endl;
     }
 
     std::string linha;
@@ -36,7 +36,7 @@ void pagina::writeLine(std::string line){
     std::ofstream file("./pages/" + this->pageName, std::ios::app);
 
     if (!file.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo: " << pageName << std::endl;
+        std::cerr << "Erro ao abrir o arquivo(writeline): " << pageName << std::endl;
     }
 
     file << line << std::endl;
@@ -45,7 +45,7 @@ void pagina::writeLine(std::string line){
 std::string pagina::getLine(int number) {
     std::ifstream file("./pages/" + this->pageName);
     if (!file.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo: " << pageName << std::endl;
+        std::cerr << "Erro ao abrir o arquivo(getline): " << pageName << std::endl;
         return nullptr;
     }
 
