@@ -13,7 +13,7 @@ struct RunTupla {
     Tupla tupla;
     int run_idx;
     bool operator>(const RunTupla& other) const {
-        // Comparação para min-heap
+        // Comparacao para min-heap
         return tupla.cols[0] > other.tupla.cols[0];
     }
 };
@@ -39,9 +39,9 @@ void external_sort(std::string tabela_nome, std::string caminho_csv, int col_idx
     std::string linha;
     std::vector<Tupla> buffer;
     int run_id = 0;
-    const int TUPlAS_POR_RUN = 40; // 4 páginas * 10 tuplas
+    const int TUPlAS_POR_RUN = 40; // 4 paginas * 10 tuplas
 
-    // Fase 1: Criação dos runs
+    // Fase 1: Criacao dos runs
     while (getline(in, linha)) {
         Tupla t;
         std::istringstream iss(linha);
@@ -89,7 +89,7 @@ void external_sort(std::string tabela_nome, std::string caminho_csv, int col_idx
     // Fase 2: Merge dos runs
     int num_runs = run_id;
     if (num_runs == 1) {
-        std::cout << "Arquivo já está ordenado em um único run.\n";
+        std::cout << "Arquivo ja esta ordenado em um unico run.\n";
         return;
     }
 
@@ -146,7 +146,7 @@ void external_sort(std::string tabela_nome, std::string caminho_csv, int col_idx
                 }
                 out_run << "\n";
 
-                // Avança no run de onde saiu a menor tupla
+                // Avanca no run de onde saiu a menor tupla
                 if (getline(run_files[menor_idx], linhas[menor_idx])) {
                     // ok
                 } else {
@@ -167,7 +167,7 @@ void external_sort(std::string tabela_nome, std::string caminho_csv, int col_idx
             new_run_id++;
         }
 
-        // Renomeia os novos runs temporários para runs normais
+        // Renomeia os novos runs temporarios para runs normais
         for (int i = 0; i < new_run_id; ++i) {
             std::filesystem::rename(
                 "./pages/" + tabela_nome + "_run_tmp" + std::to_string(i) + ".txt",
@@ -178,11 +178,11 @@ void external_sort(std::string tabela_nome, std::string caminho_csv, int col_idx
         merge_pass++;
     }
 
-    // O arquivo final ordenado está em ./pages/tabela_nome_run0.txt
+    // O arquivo final ordenado esta em ./pages/tabela_nome_run0.txt
     std::cout << "Arquivo ordenado final: ./pages/" << tabela_nome << "_run0.txt" << std::endl;
 }
 
-// Gera páginas ordenadas a partir do arquivo run0.txt
+// Gera paginas ordenadas a partir do arquivo run0.txt
 void gerar_paginas_ordenadas(std::string tabela_nome, int colunas) {
     std::ifstream in("./pages/" + tabela_nome + "_run0.txt");
     if (!in.is_open()) {

@@ -1,4 +1,4 @@
-// sort_merge_join.cpp - Implementação corrigida
+// sort_merge_join.cpp - Implementacao corrigida
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -7,7 +7,7 @@
 #include "../headers/pagina.h"
 #include "../headers/tupla.h"
 
-// Função para juntar os campos das tuplas (usando vírgula)
+// Funcao para juntar os campos das tuplas (usando virgula)
 std::string join_tuplas(const Tupla& ta, const Tupla& tb) {
     std::ostringstream oss;
     for (size_t i = 0; i < ta.cols.size(); ++i) {
@@ -26,9 +26,9 @@ void sort_merge_join(std::string tabelaA, int colA, int numPagA,
     std::ofstream out("./" + saida_nome);
     int IOs = 0, paginas_escritas = 0, tuplas_saida = 0;
 
-    // Ponteiros para as páginas e linhas atuais
+    // Ponteiros para as paginas e linhas atuais
     int currentPageA = 0, currentPageB = 0;
-    int currentLineA = 1, currentLineB = 1; // Linha 0 é cabeçalho
+    int currentLineA = 1, currentLineB = 1; // Linha 0 é cabecalho
 
     pagina pagA, pagB;
     pagA.loadPage(tabelaA + std::to_string(currentPageA) + "page.txt");
@@ -47,7 +47,7 @@ void sort_merge_join(std::string tabelaA, int colA, int numPagA,
         std::istringstream issA(linhaA), issB(linhaB);
         std::string campo;
 
-        // Atenção: separador das páginas é ';'
+        // Atencao: separador das paginas é ';'
         while (getline(issA, campo, ';')) ta.cols.push_back(campo);
         while (getline(issB, campo, ';')) tb.cols.push_back(campo);
 
@@ -63,7 +63,7 @@ void sort_merge_join(std::string tabelaA, int colA, int numPagA,
             currentLineB++;
         }
 
-        // Troca de página se necessário
+        // Troca de pagina se necessario
         if (currentLineA > 10) {
             currentPageA++;
             currentLineA = 1;
@@ -81,7 +81,7 @@ void sort_merge_join(std::string tabelaA, int colA, int numPagA,
             }
         }
 
-        // Quando buffer de saída enche (10 tuplas), grava uma página
+        // Quando buffer de saida enche (10 tuplas), grava uma pagina
         if (buffer_saida.size() == 10) {
             for (const auto& l : buffer_saida) out << l << "\n";
             buffer_saida.clear();
@@ -89,14 +89,14 @@ void sort_merge_join(std::string tabelaA, int colA, int numPagA,
         }
     }
 
-    // Grava o que sobrou no buffer de saída
+    // Grava o que sobrou no buffer de saida
     if (!buffer_saida.empty()) {
         for (const auto& l : buffer_saida) out << l << "\n";
         paginas_escritas++;
     }
 
-    std::cout << "Junção concluída: " << saida_nome << std::endl;
+    std::cout << "Juncao concluida: " << saida_nome << std::endl;
     std::cout << "IOs realizados: " << IOs << std::endl;
-    std::cout << "Páginas escritas: " << paginas_escritas << std::endl;
+    std::cout << "Paginas escritas: " << paginas_escritas << std::endl;
     std::cout << "Tuplas resultantes: " << tuplas_saida << std::endl;
 }
